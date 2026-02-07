@@ -31,16 +31,18 @@ npm run start
 
 ## Project structure
 
-- assets/
-  - valid-wordle-words.txt — word list used by the solver
-- src/
-  - main.ts — application entry
-  - models/
-    - tile.ts — tile, letter status model
-  - utils/
-    - assetUtils.ts — helpers for reading `assets` data
-    - gameState.ts — game state representation
-    - solverUtils.ts — solver logic and helper functions
-    - WordleScrape.ts — scraping of the wordle page
-- package.json
-- tsconfig.json
+```
+project-root
+├─ assets/valid-wordle-words.txt        # Word list used by the solver
+├─ package.json                  # Project metadata and dependencies
+├─ tsconfig.json                 # TypeScript configuration
+├─ src/
+│  ├─ main.ts                    # Application entry point
+│  ├─ models/                    # Data models
+│  │  └─ tile.ts                 # Tile / letter status model
+│  ├─ utils/                     # Utility functions and helpers
+│  │  ├─ assetUtils.ts           # Helpers for reading asset data
+│  │  ├─ gameState.ts            # Game state representation
+│  │  ├─ solverUtils.ts          # Solver logic and helper functions
+│  │  └─ WordleScrape.ts         # Scraping logic for the Wordle page
+```
