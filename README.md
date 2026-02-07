@@ -33,7 +33,7 @@ npm run start
 
 ```
 project-root
-├─ assets/valid-wordle-words.txt        # Word list used by the solver
+├─ assets/valid-wordle-words.txt # Word list used by the solver
 ├─ package.json                  # Project metadata and dependencies
 ├─ tsconfig.json                 # TypeScript configuration
 ├─ src/
