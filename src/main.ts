@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { assetPath } from "./utils/assetUtils";
-import { getUpdatedWordList, getWithMostVowel } from "./utils/solverUtils";
+import { getBestStarter, getBestWordByFrequency, getUpdatedWordList } from "./utils/solverUtils";
 import { writeWord, readRowFeedback, playWordle } from "./utils/WordleScrape";
 import { GameState } from "./utils/gameState";
 
@@ -14,7 +14,7 @@ const maxRetries = 6;
 async function runSolver() {
     const page = await playWordle();
 
-    let nextWord = getWithMostVowel(words);
+    let nextWord = getBestStarter();
     if (!nextWord) return;
 
     const gameState: GameState = new GameState();
@@ -36,7 +36,7 @@ async function runSolver() {
         }
 
         words = getUpdatedWordList(gameState,words);
-        nextWord = words[Math.floor(Math.random() * words.length)];
+        nextWord = getBestWordByFrequency(words);
 
         if (retry === maxRetries - 1) {
             console.log(`Max retries reached. Last guess was "${nextWord}"`);

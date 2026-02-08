@@ -1,26 +1,7 @@
 import { GameState } from "./gameState";
 
-export function getWithMostVowel(words: string[]): string | null {
-    if (words.length === 0) return null;
-
-    const vowels = new Set(["a", "e", "i", "o", "u"]);
-
-    let maxWord = words[0];
-    let maxCount = 0;
-
-    for (const word of words) {
-        let count = 0;
-        for (const char of word.toLowerCase()) {
-            if (vowels.has(char)) count++;
-        }
-
-        if (count > maxCount) {
-            maxCount = count;
-            maxWord = word;
-        }
-    }
-
-    return maxWord;
+export function getBestStarter(): string {
+    return "salet";
 }
 
 export function getUpdatedWordList(gameState: GameState, words: string[]): string[] {
@@ -40,4 +21,25 @@ export function getUpdatedWordList(gameState: GameState, words: string[]): strin
 
         return true;
     });
+}
+
+export function getBestWordByFrequency(words: string[]): string {
+    if (words.length <= 2) return words[0];
+
+    const freq: Record<string, number> = {};
+    for (const word of words) {
+        for (const char of new Set(word)) { 
+            freq[char] = (freq[char] || 0) + 1;
+        }
+    }
+
+    return words.reduce((bestWord, currentWord) => {
+        const currentScore = currentWord.split('')
+            .reduce((sum, char) => sum + (freq[char] || 0), 0);
+
+        const bestScore = bestWord.split('')
+            .reduce((sum, char) => sum + (freq[char] || 0), 0);
+
+        return currentScore > bestScore ? currentWord : bestWord;
+    }, words[0]);
 }
